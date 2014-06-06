@@ -50,43 +50,50 @@ def middle(input_list):
     two."""
     return input_list[2:len(input_list)-2]
 
+def inner_four(input_list):
+    """Return the third, fourth, fifth, and sixth elements of the input list."""
+    return input_list[2:6]
 
+def inner_four_end(input_list):
+    """Return the sixth, fifth, fourth, and third elements from the end of the
+    list, in that order.
+    """
+    return input_list[-6:-2]
 
-    #return input_list
+def replace_head(input_list):
+    """Replace the head of the input list with the value 42."""
+    input_list[0] = 42
+    return input_list[0]
 
-# def inner_four(input_list):
-#     """Return the third, fourth, fifth, and sixth elements of the input list."""
-#     pass
+def replace_third_and_last(input_list):
+    """Replace the third and last elements of the input list with the value 37."""
+    input_list[2] = 37
+    input_list[-1] = 37
+    return input_list[2] and input_list[-1]
 
-# def inner_four_end(input_list):
-#     """Return the sixth, fifth, fourth, and third elements from the end of the
-#     list, in that order.
-#     """
-#     pass
+def replace_middle(input_list):
+    """Replace all elements of the input list with the the values 42 and 37, in
+    that order, except for the first two and last two elements.
+    """
+    # to avoid the first two and the last two
+    input_list[2:len(input_list)-2] = [42,37]
+    return input_list[2:len(input_list)-2]
 
-# def replace_head(input_list):
-#     """Replace the head of the input list with the value 42."""
-#     pass
+def delete_third_and_seventh(input_list):
+    """Remove the third and seventh elements of the input list."""
+    #input_list.pop(2) #pop only works on string. we are working on list
+    #no it didn't work. :-(
+        # ok now it works, but i don't know how come it works... weird....
+    del input_list[6], input_list[2]
+    return input_list
 
-# def replace_third_and_last(input_list):
-#     """Replace the third and last elements of the input list with the value 37."""
-#     pass
+def delete_middle(input_list):
+    """Remove all elements from the input list except for the first two and the
+    last two.
+    """
+    del input_list[2:len(input_list)-2]
+    return input_list
 
-# def replace_middle(input_list):
-#     """Replace all elements of the input list with the the values 42 and 37, in
-#     that order, except for the first two and last two elements.
-#     """
-#     pass
-
-# def delete_third_and_seventh(input_list):
-#     """Remove the third and seventh elements of the input list."""
-#     pass
-
-# def delete_middle(input_list):
-#     """Remove all elements from the input list except for the first two and the
-#     last two.
-#     """
-#     pass
 
 # """
 # Part 2: Derived operations on lists
