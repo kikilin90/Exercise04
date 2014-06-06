@@ -2,6 +2,9 @@
 #####
 ####
 #alskjfdasjdfoaisjf
+##
+###
+###
 
 """
 Part 1: Fundamental operations on lists
