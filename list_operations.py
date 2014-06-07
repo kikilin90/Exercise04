@@ -31,7 +31,7 @@ def tail(input_list):
 
 def last(input_list):
     """Return the last element of the input list."""
-    return input_list.pop()
+    return input_list[-1]
 
 def init(input_list):
     """Return all elements of the input list except the last."""
@@ -48,107 +48,170 @@ def last_five(input_list):
 def middle(input_list):
     """Return all elements of the input list except the first two and the last
     two."""
-    return input_list[2:len(input_list)-2]
+    return input_list[2:-2]
+
+
+def inner_four(input_list):
+    """Return the third, fourth, fifth, and sixth elements of the input list."""
+    return input_list[2:6]
+
+def inner_four_end(input_list):
+    """Return the sixth, fifth, fourth, and third elements from the end of the
+    list, in that order.
+    """
+    return input_list[-6:-2]
+
+    #return input_list[5:2:-1]
+    # x = input_list[2:6]
+    # y = x.reverse()
+    # return y 
+
+def replace_head(input_list):
+    """Replace the head of the input list with the value 42."""
+    input_list[0] = 42
+    return input_list
+
+
+def replace_third_and_last(input_list):
+    """Replace the third and last elements of the input list with the value 37."""
+    input_list[2] = 37
+    input_list[-1] = 37
+    return input_list
+
+def replace_middle(input_list):
+    """Replace all elements of the input list with the the values 42 and 37, in
+    that order, except for the first two and last two elements.
+    """
+    input_list[2:-2] = [42, 37]
+    return input_list
+
+def delete_third_and_seventh(input_list):
+    """Remove the third and seventh elements of the input list."""
+    del input_list[6], input_list[2]
+    return input_list
+
+def delete_middle(input_list):
+    """Remove all elements from the input list except for the first two and the
+    last two.
+    """
+    del input_list[2:-2]
+    return input_list
+
+
+"""
+Part 2: Derived operations on lists
+-----------------------------------
+
+In this section you will implement your own versions of the standard list methods.
+You should use only the primitive operations from Part 1 in your implementations.
+For loops are also allowed, such as the following:
+    for element in some_list:
+        # Do something with element
+
+Each custom method imitates a built-in list method, as described by the docstring
+for each function. Play with the built-in methods in the Python REPL to get a feel
+for how they work before trying to write your custom version. You may also look at
+the test_list_operations.py file for concrete examples of expected behavior.
+"""
+
+def custom_len(input_list):
+    """custom_len(input_list) imitates len(input_list)"""
+    
+    test_list = 0
+    for x in input_list:
+        test_list += 1
+    return test_list
+
+# For the next four functions, get clever using slice operations described in the first half
+def custom_append(input_list, value):
+    """custom_append(input_list, value) imitates input_list.append(value)"""
+    length = custom_len(input_list)
+    input_list[length:] = [value]
+
+def custom_extend(input_list, values):
+    """custom_extend(input_list, values) imitates input_list.extend(values)"""
+
+    for value in values:
+        input_list += [value]
+    return input_list
+
+def custom_insert(input_list, index, value):
+    """custom_insert(input_list, index, value) imitates
+    input_list.insert(index, value)
+    """
+    input_list[index:index] = [value]
+    return input_list
+
+
+def custom_remove(input_list, value):
+    """custom_remove(input_list, value) imitates input_list.remove(value)"""
+    
+    for x in range(custom_len(input_list)):
+        if value == input_list[x]:
+            del input_list[x]
+            break
+    return input_list
+
+def custom_pop(input_list):
+    """custom_pop(input_list) imitates input_list.pop()"""
+    last_number = input_list[-1]
+    del input_list[-1]
+    return last_number
+
+
+def custom_index(input_list, value):
+    """custom_index(input_list, value) imitates input_list.index(value)"""
+    for index in range(custom_len(input_list)):
+        if value == input_list[index]:
+            return index 
+            break
+
+def custom_count(input_list, value):
+    """custom_count(input_list, value) imitates input_list.count(value)"""  
+    # helps us count from 0
+    count = 0
+    # helps us to go and check for the repeating value
+    for same_value in input_list:
+        if value == same_value:
+            count += 1
+    return count 
+
+def custom_reverse(input_list):
+    """custom_reverse(input_list) imitates input_list.reverse()"""
+    input_list[:] = input_list[::-1]
+
+def custom_contains(input_list, value):
+    """custom_contains(input_list, value) imitates (value in input_list)"""
+    # for inside_value in input_list:
+    #     inside_value = value 
+    # return inside_value
+    for item in input_list:
+        if item == value:
+            return True
+    
+    return False 
+
+    # This below also works, but it not efficent because it keeps
+    #   running after it knows the answer
+    # matched = False
+    # for item in input_list:
+    #     if item == value:
+    #         matched = True
+
+    # return matched
 
 
 
-    #return input_list
+    # in input_list:
+    # return true
+    # else:
+    # return false 
 
-# def inner_four(input_list):
-#     """Return the third, fourth, fifth, and sixth elements of the input list."""
-#     pass
+def custom_equality(some_list, another_list):
+    """custom_equality(some_list, another_list) imitates
+    (some_list == another_list)
+    """
+    if some_list == another_list:
+        return True
 
-# def inner_four_end(input_list):
-#     """Return the sixth, fifth, fourth, and third elements from the end of the
-#     list, in that order.
-#     """
-#     pass
-
-# def replace_head(input_list):
-#     """Replace the head of the input list with the value 42."""
-#     pass
-
-# def replace_third_and_last(input_list):
-#     """Replace the third and last elements of the input list with the value 37."""
-#     pass
-
-# def replace_middle(input_list):
-#     """Replace all elements of the input list with the the values 42 and 37, in
-#     that order, except for the first two and last two elements.
-#     """
-#     pass
-
-# def delete_third_and_seventh(input_list):
-#     """Remove the third and seventh elements of the input list."""
-#     pass
-
-# def delete_middle(input_list):
-#     """Remove all elements from the input list except for the first two and the
-#     last two.
-#     """
-#     pass
-
-# """
-# Part 2: Derived operations on lists
-# -----------------------------------
-
-# In this section you will implement your own versions of the standard list methods.
-# You should use only the primitive operations from Part 1 in your implementations.
-# For loops are also allowed, such as the following:
-#     for element in some_list:
-#         # Do something with element
-
-# Each custom method imitates a built-in list method, as described by the docstring
-# for each function. Play with the built-in methods in the Python REPL to get a feel
-# for how they work before trying to write your custom version. You may also look at
-# the test_list_operations.py file for concrete examples of expected behavior.
-# """
-
-# def custom_len(input_list):
-#     """custom_len(input_list) imitates len(input_list)"""
-#     pass
-
-# # For the next four functions, get clever using slice operations described in the first half
-# def custom_append(input_list, value):
-#     """custom_append(input_list, value) imitates input_list.append(value)"""
-#     pass
-
-# def custom_extend(input_list, values):
-#     """custom_extend(input_list, values) imitates input_list.extend(values)"""
-#     pass
-
-# def custom_insert(input_list, index, value):
-#     """custom_insert(input_list, index, value) imitates
-#     input_list.insert(index, value)
-#     """
-#     pass
-
-# def custom_remove(input_list, value):
-#     """custom_remove(input_list, value) imitates input_list.remove(value)"""
-#     pass
-
-# def custom_pop(input_list):
-#     """custom_pop(input_list) imitates input_list.pop()"""
-#     pass
-
-# def custom_index(input_list, value):
-#     """custom_index(input_list, value) imitates input_list.index(value)"""
-#     pass
-
-# def custom_count(input_list, value):
-#     """custom_count(input_list, value) imitates input_list.count(value)"""
-#     pass
-
-# def custom_reverse(input_list):
-#     """custom_reverse(input_list) imitates input_list.reverse()"""
-#     pass
-
-# def custom_contains(input_list, value):
-#     """custom_contains(input_list, value) imitates (value in input_list)"""
-#     pass
-
-# def custom_equality(some_list, another_list):
-#     """custom_equality(some_list, another_list) imitates
-#     (some_list == another_list)
-#     """
-#     pass
+    return False
