@@ -120,20 +120,19 @@ the test_list_operations.py file for concrete examples of expected behavior.
 def custom_len(input_list):
     """custom_len(input_list) imitates len(input_list)"""
     
-    test_list = 0
-    for x in input_list:
-        test_list += 1
-    return test_list
+    items = 0
+    for item in input_list:
+        items += 1
+    return items
 
 # For the next four functions, get clever using slice operations described in the first half
 def custom_append(input_list, value):
     """custom_append(input_list, value) imitates input_list.append(value)"""
-    length = custom_len(input_list)
-    input_list[length:] = [value]
+    input_list += [value]
+    return input_list
 
 def custom_extend(input_list, values):
     """custom_extend(input_list, values) imitates input_list.extend(values)"""
-
     for value in values:
         input_list += [value]
     return input_list
@@ -164,24 +163,36 @@ def custom_pop(input_list):
 
 def custom_index(input_list, value):
     """custom_index(input_list, value) imitates input_list.index(value)"""
-    for index in range(custom_len(input_list)):
-        if value == input_list[index]:
-            return index 
-            break
+    for i in range(custom_len(input_list)):
+        if input_list[i] == value:
+            return i
 
 def custom_count(input_list, value):
     """custom_count(input_list, value) imitates input_list.count(value)"""  
-    # helps us count from 0
     count = 0
-    # helps us to go and check for the repeating value
+
     for same_value in input_list:
-        if value == same_value:
+        if same_value == value:
             count += 1
+    
     return count 
 
 def custom_reverse(input_list):
     """custom_reverse(input_list) imitates input_list.reverse()"""
     input_list[:] = input_list[::-1]
+
+    # antoher way to do this, which is the long way to do it
+    # front_index = 0
+    # end_index = -1
+
+    # while front_index  < custom_len(input_list)/2:
+    #     temp = input_list[front_index]
+    #     input_list[front_index] = input_list[end_index]
+    #     input_list[end_index] = temp
+    #     front_index += 1
+    #     end_index -= 1
+
+    # return input_list
 
 def custom_contains(input_list, value):
     """custom_contains(input_list, value) imitates (value in input_list)"""
